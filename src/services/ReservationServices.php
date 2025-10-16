@@ -1,5 +1,4 @@
 <?php
-<?php
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../models/Room.php';
 require_once __DIR__ . '/../models/MaintenanceTask.php';
