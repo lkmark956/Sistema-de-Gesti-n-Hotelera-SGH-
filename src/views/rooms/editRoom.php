@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <title>Editar Habitación</title>
             <link rel="stylesheet" href="../../style.css">
         </head>
-        <body class="layout">
+        <body class="layout rooms-page">
             <header class="header">
                 <h1>🌿 Editar Habitación</h1>
             </header>

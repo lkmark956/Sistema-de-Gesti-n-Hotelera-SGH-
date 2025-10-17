@@ -25,3 +25,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Habitación</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body class="layout rooms-page">
+    <header class="header">
+        <h1>🌿 Editar Habitación</h1>
+    </header>
+    <main class="main">
+        <!-- Tu formulario de edición aquí -->
+    </main>
+    <footer class="footer">
+        <p>🌱 El Gran Descanso - Conectando con la naturaleza</p>
+    </footer>
+</body>
+</html>

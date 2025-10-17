@@ -213,6 +213,61 @@ body::after {
     border-radius: 5px; /* Bordes redondeados */
 }
 
+/* Estilos específicos para la página de huéspedes */
+.layout.guests-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.guests {
+    flex: 1;
+}
+
+.guests h2 {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.guests table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.guests th, .guests td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.guests th {
+    background-color: rgba(30, 50, 30, 0.8);
+    color: white;
+}
+
+.guests tr:hover {
+    background-color: rgba(240, 240, 240, 0.5);
+}
+
+.create-guest {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.create-guest .btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+body.guests-page {
+    background: url('./img/Huespedes.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
 /* Fondo especial para la página de habitaciones */
 body.rooms-page {
     background: url('./img/Habitacion.jpg') no-repeat center center fixed;
@@ -281,4 +336,124 @@ body.rooms-page {
 
 .form-room button:hover {
     background: #388e3c;
+}
+
+/* Formulario de huéspedes con estilo de tabla y letras blancas */
+.form-guest {
+    background: rgba(30, 50, 30, 0.85);
+    color: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    margin: 40px auto;
+    max-width: 500px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    display: block;
+}
+
+.form-guest-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.form-guest-table td {
+    padding: 6px 8px;
+    vertical-align: middle;
+}
+
+.form-guest label {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0;
+}
+
+.form-guest input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background: #2e4a2e;
+    color: #fff;
+    font-size: 1em;
+}
+
+.form-guest input:focus {
+    outline: 2px solid #4CAF50;
+    background: #3d5c3d;
+}
+
+.form-guest button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form-guest button:hover {
+    background: #388e3c;
+}
+
+body.reservations-page {
+    background: url('./img/Mostrador.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.layout.reservations-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.reservations {
+    flex: 1;
+}
+.reservations h2 {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+.create-reservation {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.create-reservation .btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+/* Estilos específicos para la tabla de reservas */
+.layout.reservations-page .table {
+    background: rgba(255,255,255,0.85); /* Fondo blanco semitransparente */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.layout.reservations-page .table th {
+    background: #3d563d; /* Verde oscuro igual que habitaciones */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+}
+
+.layout.reservations-page .table td {
+    background: transparent;
+    color: #222;
+    border: none;
+}
+
+.layout.reservations-page .table tr:nth-child(even) td {
+    background: rgba(255,255,255,0.65); /* filas pares más transparentes */
+}
+
+.layout.reservations-page .table tr:hover td {
+    background: #eafbe7; /* verde muy claro al pasar el mouse */
 }

@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Crear Nueva Habitación</title>
     <link rel="stylesheet" href="../../style.css">
 </head>
-<body class="layout">
+<body class="layout rooms-page">
     <header class="header">
         <h1>🌿 Crear Nueva Habitación</h1>
     </header>
