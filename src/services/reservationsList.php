@@ -16,7 +16,7 @@ try {
 
     // Mostrar las reservas en una tabla
     echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Habitación</th><th>Huésped</th><th>Fecha Llegada</th><th>Fecha Salida</th><th>Precio Total</th><th>Estado</th></tr>";
+    echo "<tr><th>ID</th><th>Habitación</th><th>Huésped</th><th>Fecha Llegada</th><th>Fecha Salida</th><th>Precio Total</th><th>Estado</th><th>Acciones</th></tr>";
     foreach ($reservas as $reserva) {
         echo "<tr>
                 <td>{$reserva['id']}</td>
@@ -26,6 +26,16 @@ try {
                 <td>{$reserva['fecha_salida']}</td>
                 <td>{$reserva['precio_total']}</td>
                 <td>{$reserva['estado']}</td>
+                <td>
+                    <form method='POST' action='deleteReservation.php' style='display:inline;'>
+                        <input type='hidden' name='id' value='{$reserva['id']}'>
+                        <button type='submit'>Eliminar</button>
+                    </form>
+                    <form method='GET' action='editReservation.php' style='display:inline;'>
+                        <input type='hidden' name='id' value='{$reserva['id']}'>
+                        <button type='submit'>Editar</button>
+                    </form>
+                </td>
               </tr>";
     }
     echo "</table>";

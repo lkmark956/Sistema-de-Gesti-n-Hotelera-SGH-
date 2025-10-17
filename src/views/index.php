@@ -1,27 +1,64 @@
 <?php
-// index.php (vista principal)
+require_once __DIR__ . '/../config/database.php';
+
+try {
+    $db = Database::getInstance();
+
+    // Contar tareas en curso
+    $stmt = $db->query("SELECT COUNT(*) AS tareas_en_curso FROM tareas_mantenimiento WHERE estado = 'En Curso'");
+    $tareasEnCurso = $stmt->fetchColumn();
+
+    // Contar reservas
+    $stmt = $db->query("SELECT COUNT(*) AS total_reservas FROM reservas");
+    $totalReservas = $stmt->fetchColumn();
+
+    // Contar huéspedes
+    $stmt = $db->query("SELECT COUNT(*) AS total_huespedes FROM huespedes");
+    $totalHuespedes = $stmt->fetchColumn();
+} catch (Exception $e) {
+    echo "Error al cargar las estadísticas: " . $e->getMessage();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>El Gran Descanso</title>
-    <!-- style.css está en src/, desde src/views la ruta relativa es ../style.css -->
+    <title>El Gran Descanso - Gestión Hotelera</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body class="layout">
     <header class="header">
-        <h1>El Gran Descanso - Gestión Hotelera</h1>
-        <nav>
-            <!-- rutas relativas dentro de views -->
+        <h1>🌿 El Gran Descanso</h1>
+        <nav class="navbar">
             <a href="rooms/list.php">Habitaciones</a>
             <a href="guests/guestsList.php">Huéspedes</a>
             <a href="../services/reservationsList.php">Reservas</a>
             <a href="maintenance/tasks.php">Mantenimiento</a>
         </nav>
     </header>
-
-    
+    <main class="main">
+        <section class="stats">
+            <h2>Estadísticas</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Tareas en curso</h3>
+                    <p><?= $tareasEnCurso ?></p>
+                </div>
+                <div class="card">
+                    <h3>Total de reservas</h3>
+                    <p><?= $totalReservas ?></p>
+                </div>
+                <div class="card">
+                    <h3>Total de huéspedes</h3>
+                    <p><?= $totalHuespedes ?></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>🌱 El Gran Descanso - Conectando con la naturaleza</p>
+    </footer>
 </body>
 </html>
 

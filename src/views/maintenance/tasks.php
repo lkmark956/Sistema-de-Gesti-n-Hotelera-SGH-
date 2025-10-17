@@ -2,28 +2,32 @@
 require_once __DIR__ . '/../../config/database.php';
 
 echo "<h2>Lista de Tareas de Mantenimiento</h2>";
-echo "<p>Aquí se mostraría la lista de tareas de mantenimiento asignadas a las habitaciones.</p>";
 
 try {
     $db = Database::getInstance();
-
-    // Consulta para obtener las tareas de mantenimiento
-    $query = $db->query("SELECT t.id, h.numero AS habitacion, t.descripcion, t.fecha_inicio, t.fecha_fin, t.estado
-                         FROM tareas_mantenimiento t
-                         JOIN habitaciones h ON t.habitacion_id = h.id");
+    $query = $db->query("SELECT * FROM tareas_mantenimiento");
     $tareas = $query->fetchAll();
 
-    // Mostrar las tareas en una tabla
     echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Habitación</th><th>Descripción</th><th>Fecha Inicio</th><th>Fecha Fin</th><th>Estado</th></tr>";
+    echo "<tr><th>ID</th><th>Habitación</th><th>Descripción</th><th>Fecha Inicio</th><th>Fecha Fin</th><th>Estado</th><th>Acciones</th></tr>";
     foreach ($tareas as $tarea) {
         echo "<tr>
                 <td>{$tarea['id']}</td>
-                <td>{$tarea['habitacion']}</td>
+                <td>{$tarea['habitacion_id']}</td>
                 <td>{$tarea['descripcion']}</td>
                 <td>{$tarea['fecha_inicio']}</td>
                 <td>{$tarea['fecha_fin']}</td>
                 <td>{$tarea['estado']}</td>
+                <td>
+                    <form method='POST' action='deleteTask.php' style='display:inline;'>
+                        <input type='hidden' name='id' value='{$tarea['id']}'>
+                        <button type='submit'>Eliminar</button>
+                    </form>
+                    <form method='GET' action='editTask.php' style='display:inline;'>
+                        <input type='hidden' name='id' value='{$tarea['id']}'>
+                        <button type='submit'>Editar</button>
+                    </form>
+                </td>
               </tr>";
     }
     echo "</table>";

@@ -1,0 +1,97 @@
+/* General layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('./img/Principal.jpg') no-repeat center center fixed; /* Imagen de fondo */
+    background-size: cover;
+    color: #333;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Difuminado */
+    z-index: -1;
+}
+
+.header {
+    background-color: rgba(30, 50, 30, 0.8); /* Verde oscuro con transparencia */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.navbar {
+    margin-top: 10px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.main {
+    padding: 20px;
+}
+
+.stats h2 {
+    text-align: center;
+    color: #2E7D32; /* Verde más oscuro */
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: rgba(128, 128, 128, 0.5); /* Gris medio con menos opacidad */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #FFFFFF; /* Blanco para mayor visibilidad */
+}
+
+.card p {
+    font-size: 2em;
+    color: #FFFFFF; /* Blanco para mayor visibilidad */
+    margin: 10px 0 0;
+}
+
+.footer {
+    background-color: rgba(20, 40, 20, 0.8); /* Verde más oscuro con transparencia */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed; /* Fijar el footer abajo */
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
