@@ -212,3 +212,73 @@ body::after {
     font-size: 1em; /* Tamaño de fuente */
     border-radius: 5px; /* Bordes redondeados */
 }
+
+/* Fondo especial para la página de habitaciones */
+body.rooms-page {
+    background: url('./img/Habitacion.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Formulario de habitaciones con estilo de tabla y letras blancas */
+.form-room {
+    background: rgba(30, 50, 30, 0.85);
+    color: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    margin: 40px auto;
+    max-width: 500px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    display: block;
+}
+
+.form-room-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.form-room-table td {
+    padding: 6px 8px;
+    vertical-align: middle;
+}
+
+.form-room label {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0;
+}
+
+.form-room input,
+.form-room select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background: #2e4a2e;
+    color: #fff;
+    font-size: 1em;
+}
+
+.form-room input:focus,
+.form-room select:focus {
+    outline: 2px solid #4CAF50;
+    background: #3d5c3d;
+}
+
+.form-room button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form-room button:hover {
+    background: #388e3c;
+}

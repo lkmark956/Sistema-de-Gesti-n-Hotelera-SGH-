@@ -15,11 +15,11 @@ $rooms = Room::all();
 <body class='layout rooms-page'>
     <header class='header'>
         <h1>🌿 Habitaciones</h1>
-        <nav class='navbar'>
-            <a href='../index.php'>Inicio</a>
-            <a href='../guests/guestsList.php'>Huéspedes</a>
-            <a href='../services/reservationsList.php'>Reservas</a>
-            <a href='../maintenance/tasks.php'>Mantenimiento</a>
+        <nav class="navbar">
+            <a href="../../../index.php">Inicio</a>
+            <a href="../guests/guestsList.php">Huéspedes</a>    
+            <a href="../../services/reservationsList.php">Reservas</a>
+            <a href="../maintenance/tasks.php">Mantenimiento</a>
         </nav>
     </header>
     <main class='main'>
