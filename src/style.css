@@ -95,3 +95,120 @@ body::after {
     width: 100%;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
+
+/* Estilo para tablas */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: rgba(209, 226, 209, 0.8); /* Verde oscuro con transparencia */
+    color: white;
+}
+
+.table tr:nth-child(even) {
+    background-color: rgba(235, 229, 229, 0.2); /* Gris claro */
+}
+
+.table tr:hover {
+    background-color: rgba(221, 211, 211, 0.4); /* Gris más oscuro al pasar el ratón */
+}
+
+/* Estilo para botones */
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #45A049; /* Verde más oscuro */
+}
+
+.btn-danger {
+    background-color: #F44336; /* Rojo */
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #D32F2F; /* Rojo más oscuro */
+}
+
+/* Estilos específicos para la página de habitaciones */
+.layout.rooms-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.rooms {
+    flex: 1;
+}
+
+.actions {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.actions .btn {
+    margin-left: 10px;
+}
+
+.rooms table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.rooms th, .rooms td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.rooms th {
+    background-color: rgba(30, 50, 30, 0.8); /* Verde oscuro con transparencia */
+    color: white;
+}
+
+.rooms tr:hover {
+    background-color: rgba(240, 240, 240, 0.5); /* Gris claro al pasar el ratón */
+}
+
+.rooms h2 {
+    text-align: center; /* Centra el texto horizontalmente */
+    color: #FFFFFF; /* Blanco para mayor visibilidad */
+    font-size: 2em; /* Tamaño de fuente más grande */
+    margin-bottom: 20px; /* Espaciado debajo del encabezado */
+}
+
+.create-room {
+    text-align: center; /* Centra el botón horizontalmente */
+    margin-top: 20px; /* Espaciado superior */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.create-room .btn {
+    padding: 10px 20px; /* Tamaño del botón */
+    font-size: 1em; /* Tamaño de fuente */
+    border-radius: 5px; /* Bordes redondeados */
+}

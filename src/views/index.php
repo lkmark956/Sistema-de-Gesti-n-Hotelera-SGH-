@@ -103,3 +103,10 @@ return [
     'charset' => 'utf8',
 ];
 ?>
+
+<style>
+body {
+    background: url('./img/Principal.jpg') no-repeat center center fixed; /* Imagen de fondo */
+    background-size: cover;
+}
+</style>
