@@ -19,9 +19,10 @@ class Room {
         return $r;
     }
 
-    public static function all(): array {
-        $pdo = Database::getInstance();
-        return $pdo->query('SELECT * FROM rooms')->fetchAll();
+    public static function all() {
+        $db = Database::getInstance();
+        $query = $db->query("SELECT * FROM habitaciones"); // Cambiado de 'rooms' a 'habitaciones'
+        return $query->fetchAll();
     }
 
     public static function updateCleaningState(int $id, string $state): bool {

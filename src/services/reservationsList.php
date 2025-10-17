@@ -1,0 +1,35 @@
+<?php
+require_once __DIR__ . '/../config/database.php';
+
+echo "<h2>Lista de Reservas</h2>";
+echo "<p>Aquí se mostraría la lista de reservas realizadas en el sistema.</p>";
+
+try {
+    $db = Database::getInstance();
+
+    // Consulta para obtener las reservas
+    $query = $db->query("SELECT r.id, h.numero AS habitacion, hu.nombre AS huesped, r.fecha_llegada, r.fecha_salida, r.precio_total, r.estado
+                         FROM reservas r
+                         JOIN habitaciones h ON r.habitacion_id = h.id
+                         JOIN huespedes hu ON r.huesped_id = hu.id");
+    $reservas = $query->fetchAll();
+
+    // Mostrar las reservas en una tabla
+    echo "<table border='1'>";
+    echo "<tr><th>ID</th><th>Habitación</th><th>Huésped</th><th>Fecha Llegada</th><th>Fecha Salida</th><th>Precio Total</th><th>Estado</th></tr>";
+    foreach ($reservas as $reserva) {
+        echo "<tr>
+                <td>{$reserva['id']}</td>
+                <td>{$reserva['habitacion']}</td>
+                <td>{$reserva['huesped']}</td>
+                <td>{$reserva['fecha_llegada']}</td>
+                <td>{$reserva['fecha_salida']}</td>
+                <td>{$reserva['precio_total']}</td>
+                <td>{$reserva['estado']}</td>
+              </tr>";
+    }
+    echo "</table>";
+} catch (Exception $e) {
+    echo "Error al cargar las reservas: " . $e->getMessage();
+}
+?>

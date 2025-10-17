@@ -10,15 +10,10 @@ class MaintenanceTask {
     public $estado;
 
     // Cuenta tareas activas que se solapan con el rango [from, to)
-    public static function countActiveOverlap(int $roomId, string $from, string $to): int {
+    public static function countActiveOverlap(int $roomId, string $startDate, string $endDate): int {
         $pdo = Database::getInstance();
-        $stmt = $pdo->prepare("
-            SELECT COUNT(*) FROM maintenance_tasks
-            WHERE room_id = :room_id
-              AND estado <> 'Finalizada'
-              AND NOT (fecha_fin <= :from OR fecha_inicio >= :to)
-        ");
-        $stmt->execute([':room_id' => $roomId, ':from' => $from, ':to' => $to]);
-        return (int)$stmt->fetchColumn();
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM tareas_mantenimiento WHERE habitacion_id = :roomId AND estado = "En Curso" AND (fecha_inicio <= :endDate AND fecha_fin >= :startDate)');
+        $stmt->execute(['roomId' => $roomId, 'startDate' => $startDate, 'endDate' => $endDate]);
+        return (int) $stmt->fetchColumn();
     }
 }

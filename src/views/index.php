@@ -15,8 +15,8 @@
         <nav>
             <!-- rutas relativas dentro de views -->
             <a href="rooms/list.php">Habitaciones</a>
-            <a href="guests/list.php">Huéspedes</a>
-            <a href="reservations/list.php">Reservas</a>
+            <a href="guests/guestsList.php">Huéspedes</a>
+            <a href="../services/reservationsList.php">Reservas</a>
             <a href="maintenance/tasks.php">Mantenimiento</a>
         </nav>
     </header>
