@@ -33,3 +33,16 @@ try {
     echo "Error al cargar las reservas: " . $e->getMessage();
 }
 ?>
+
+<form method="POST" action="addReservation.php">
+    <h3>Añadir Reserva</h3>
+    <label for="huesped_id">ID Huésped:</label>
+    <input type="number" id="huesped_id" name="huesped_id" required>
+    <label for="habitacion_id">ID Habitación:</label>
+    <input type="number" id="habitacion_id" name="habitacion_id" required>
+    <label for="fecha_llegada">Fecha de Llegada:</label>
+    <input type="date" id="fecha_llegada" name="fecha_llegada" required>
+    <label for="fecha_salida">Fecha de Salida:</label>
+    <input type="date" id="fecha_salida" name="fecha_salida" required>
+    <button type="submit">Añadir</button>
+</form>
