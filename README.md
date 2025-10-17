@@ -1,1 +1,1 @@
-# Sistema-de-Gesti-n-Hotelera-SGH-
+# Sistema-de-Gestion-Hotelera-SGH-
