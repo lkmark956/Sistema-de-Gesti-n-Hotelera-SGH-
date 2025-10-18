@@ -26,7 +26,7 @@ $rooms = $db->query("SELECT id, numero FROM habitaciones")->fetchAll();
         <h1>📅 Editar Reserva</h1>
     </header>
     <main class="main">
-        <form method="POST" action="updateReservation.php" class="form-room">
+    <form method="POST" action="../../services/updateReservation.php" class="form-room">
             <input type="hidden" name="id" value="<?= htmlspecialchars($reservation['id']) ?>">
             <table class="form-room-table">
                 <tr>

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/Database.php';
+require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/Room.php';
 require_once __DIR__ . '/../models/MaintenanceTask.php';
 
@@ -28,20 +28,20 @@ class ReservationService {
                 throw new RuntimeException('No se puede reservar: la habitación tiene tareas de mantenimiento activas en esas fechas.');
             }
 
-             $stmt = $this->pdo->prepare("
-                SELECT COUNT(*) FROM reservations
-                WHERE room_id = :room_id
-                  AND estado = 'Confirmada'
-                  AND NOT (fecha_salida <= :from OR fecha_llegada >= :to)
-            ");
+                        $stmt = $this->pdo->prepare("
+                                SELECT COUNT(*) FROM reservas
+                                WHERE habitacion_id = :room_id
+                                    AND estado = 'Confirmada'
+                                    AND NOT (fecha_salida <= :from OR fecha_llegada >= :to)
+                        ");
 
-             $stmt->execute([':room_id' => $roomId, ':from' => $fechaLlegada, ':to' => $fechaSalida]);
+                         $stmt->execute([':room_id' => $roomId, ':from' => $fechaLlegada, ':to' => $fechaSalida]);
             if ((int)$stmt->fetchColumn() > 0) {
                 $this->pdo->rollBack();
                 throw new RuntimeException('La habitación ya está reservada (Confirmada) en esas fechas.');
             }
 
-            $stmt = $this->pdo->prepare("SELECT precio_base FROM rooms WHERE id = :id FOR UPDATE");
+            $stmt = $this->pdo->prepare("SELECT precio_base FROM habitaciones WHERE id = :id FOR UPDATE");
             $stmt->execute([':id' => $roomId]);
             $precioBase = $stmt->fetchColumn();
             if ($precioBase === false) {
@@ -53,7 +53,7 @@ class ReservationService {
             $precioTotal = bcmul((string)$precioBase, (string)$numNoches, 2);
 
             $insert = $this->pdo->prepare("
-                INSERT INTO reservations (guest_id, room_id, fecha_llegada, fecha_salida, precio_total, estado)
+                INSERT INTO reservas (huesped_id, habitacion_id, fecha_llegada, fecha_salida, precio_total, estado)
                 VALUES (:guest_id, :room_id, :fecha_llegada, :fecha_salida, :precio_total, :estado)
             ");
 

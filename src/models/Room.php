@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/Database.php';
+require_once __DIR__ . '/../config/database.php';
 
 class Room {
     public int $id;
@@ -10,7 +10,7 @@ class Room {
 
     public static function findById(int $id): ?self {
         $pdo = Database::getInstance();
-        $stmt = $pdo->prepare('SELECT * FROM rooms WHERE id = :id');
+    $stmt = $pdo->prepare('SELECT * FROM habitaciones WHERE id = :id');
         $stmt->execute(['id' => $id]);
         $row = $stmt->fetch();
         if (!$row) return null;
@@ -27,7 +27,7 @@ class Room {
 
     public static function updateCleaningState(int $id, string $state): bool {
         $pdo = Database::getInstance();
-        $stmt = $pdo->prepare('UPDATE rooms SET cleaning_state = :state WHERE id = :id');
-        return $stmt->execute(['state' => $state, 'id' => $id]);
+    $stmt = $pdo->prepare('UPDATE habitaciones SET estado_limpieza = :state WHERE id = :id');
+    return $stmt->execute(['state' => $state, 'id' => $id]);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/Database.php';
+require_once __DIR__ . '/../config/database.php';
 
 class Guest {
     public $id;
@@ -9,7 +9,7 @@ class Guest {
 
     public static function findByEmail(string $email): ?self {
         $pdo = Database::getInstance();
-        $stmt = $pdo->prepare('SELECT * FROM guests WHERE email = :email');
+    $stmt = $pdo->prepare('SELECT * FROM huespedes WHERE email = :email');
         $stmt->execute(['email' => $email]);
         $row = $stmt->fetch();
         if (!$row) return null;
@@ -20,7 +20,7 @@ class Guest {
 
     public static function create (array $data): int {
         $pdo = Database::getInstance();
-        $stmt = $pdo->prepare('INSERT INTO guests (nombre, email, documento_identidad) VALUES (:nombre, :email, :doc)');
+    $stmt = $pdo->prepare('INSERT INTO huespedes (nombre, email, documento_identidad) VALUES (:nombre, :email, :doc)');
         $stmt->execute([
             'nombre' => $data['nombre'],
             'email' => $data['email'],

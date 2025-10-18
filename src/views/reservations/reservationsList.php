@@ -47,7 +47,7 @@ if ($reservations === null) {
                         <td><?= htmlspecialchars($reservation['fecha_llegada']) ?></td>
                         <td><?= htmlspecialchars($reservation['fecha_salida']) ?></td>
                         <td>
-                            <form method="POST" action="deleteReservation.php" style="display:inline;">
+                            <form method="POST" action="../../services/deleteReservation.php" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($reservation['id']) ?>">
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>

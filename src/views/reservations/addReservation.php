@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>📅 Crear Nueva Reserva</h1>
     </header>
     <main class="main">
-        <form method="POST" action="addReservation.php" class="form-room">
+    <form method="POST" action="../../services/addReservation.php" class="form-room">
             <table class="form-room-table">
                 <tr>
                     <td><label for="guest_id">Huésped:</label></td>
