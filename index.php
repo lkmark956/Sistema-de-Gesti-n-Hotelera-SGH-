@@ -33,7 +33,7 @@ try {
         <nav class="navbar">
             <a href="src/views/rooms/list.php">Habitaciones</a>
             <a href="src/views/guests/guestsList.php">Huéspedes</a>
-            <a href="src/services/reservationsList.php">Reservas</a>
+            <a href="src/views/reservations/reservationsList.php">Reservas</a>
             <a href="src/views/maintenance/tasks.php">Mantenimiento</a>
         </nav>
     </header>

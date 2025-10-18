@@ -457,3 +457,13 @@ body.reservations-page {
 .layout.reservations-page .table tr:hover td {
     background: #eafbe7; /* verde muy claro al pasar el mouse */
 }
+
+.error {
+    color: #fff;
+    background: #d32f2f;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}

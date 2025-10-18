@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../config/database.php';
         <nav class="navbar">
             <a href="../../../index.php">Inicio</a>
             <a href="../rooms/list.php">Habitaciones</a>
-            <a href="../../services/reservationsList.php">Reservas</a>
+            <a href="../services/reservationsList.php">Reservas</a>
             <a href="../maintenance/tasks.php">Mantenimiento</a>
         </nav>
     </header>

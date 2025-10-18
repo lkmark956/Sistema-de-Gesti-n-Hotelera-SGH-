@@ -1,50 +1,81 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
 
-echo "<h2>Lista de Tareas de Mantenimiento</h2>";
-
 try {
     $db = Database::getInstance();
-    $query = $db->query("SELECT * FROM tareas_mantenimiento");
-    $tareas = $query->fetchAll();
-
-    echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Habitación</th><th>Descripción</th><th>Fecha Inicio</th><th>Fecha Fin</th><th>Estado</th><th>Acciones</th></tr>";
-    foreach ($tareas as $tarea) {
-        echo "<tr>
-                <td>{$tarea['id']}</td>
-                <td>{$tarea['habitacion_id']}</td>
-                <td>{$tarea['descripcion']}</td>
-                <td>{$tarea['fecha_inicio']}</td>
-                <td>{$tarea['fecha_fin']}</td>
-                <td>{$tarea['estado']}</td>
-                <td>
-                    <form method='POST' action='deleteTask.php' style='display:inline;'>
-                        <input type='hidden' name='id' value='{$tarea['id']}'>
-                        <button type='submit'>Eliminar</button>
-                    </form>
-                    <form method='GET' action='editTask.php' style='display:inline;'>
-                        <input type='hidden' name='id' value='{$tarea['id']}'>
-                        <button type='submit'>Editar</button>
-                    </form>
-                </td>
-              </tr>";
-    }
-    echo "</table>";
+    $tasks = $db->query("SELECT t.id, t.habitacion_id, t.descripcion, t.estado, t.fecha_inicio, t.fecha_fin FROM tareas_mantenimiento t")->fetchAll();
 } catch (Exception $e) {
-    echo "Error al cargar las tareas de mantenimiento: " . $e->getMessage();
+    echo "<div class='error'>Error al cargar las tareas: " . htmlspecialchars($e->getMessage()) . "</div>";
 }
 ?>
-
-<form method="POST" action="addTask.php">
-    <h3>Añadir Tarea de Mantenimiento</h3>
-    <label for="habitacion_id">ID Habitación:</label>
-    <input type="number" id="habitacion_id" name="habitacion_id" required>
-    <label for="descripcion">Descripción:</label>
-    <input type="text" id="descripcion" name="descripcion" required>
-    <label for="fecha_inicio">Fecha de Inicio:</label>
-    <input type="date" id="fecha_inicio" name="fecha_inicio" required>
-    <label for="fecha_fin">Fecha de Fin:</label>
-    <input type="date" id="fecha_fin" name="fecha_fin" required>
-    <button type="submit">Añadir</button>
-</form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tareas de Mantenimiento</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body class="layout rooms-page">
+    <header class="header">
+        <h1>🔧 Tareas de Mantenimiento</h1>
+        <nav class="navbar">
+            <a href="../../../index.php">Inicio</a>
+            <a href="../rooms/list.php">Habitaciones</a>
+            <a href="../guests/guestsList.php">Huéspedes</a>
+            <a href="../reservations/reservationsList.php">Reservas</a>
+        </nav>
+    </header>
+    <main class="main">
+        <section class="rooms">
+            <h2>Lista de Tareas</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Habitación</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($tasks)): ?>
+                        <?php foreach ($tasks as $task): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($task['id']) ?></td>
+                                <td><?= htmlspecialchars($task['habitacion_id']) ?></td>
+                                <td><?= htmlspecialchars($task['descripcion']) ?></td>
+                                <td><?= htmlspecialchars($task['estado']) ?></td>
+                                <td><?= htmlspecialchars($task['fecha_inicio']) ?></td>
+                                <td><?= htmlspecialchars($task['fecha_fin']) ?></td>
+                                <td class="actions">
+                                    <form method="GET" action="editTask.php" style="display:inline;">
+                                        <input type="hidden" name="id" value="<?= $task['id'] ?>">
+                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                    </form>
+                                    <form method="POST" action="deleteTask.php" style="display:inline;">
+                                        <input type="hidden" name="id" value="<?= $task['id'] ?>">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td colspan="7">No hay tareas registradas.</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </section>
+        <div class="create-room">
+            <form method="GET" action="addTask.php">
+                <button type="submit" class="btn btn-primary">Añadir Tarea</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>🌱 El Gran Descanso - Mantenimiento</p>
+    </footer>
+</body>
+</html>

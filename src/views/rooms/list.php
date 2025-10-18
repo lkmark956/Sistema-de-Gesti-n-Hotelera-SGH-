@@ -17,8 +17,8 @@ $rooms = Room::all();
         <h1>🌿 Habitaciones</h1>
         <nav class="navbar">
             <a href="../../../index.php">Inicio</a>
-            <a href="../guests/guestsList.php">Huéspedes</a>    
-            <a href="../../services/reservationsList.php">Reservas</a>
+            <a href="../guests/guestsList.php">Huéspedes</a>
+            <a href="../reservations/reservationsList.php">Reservas</a>
             <a href="../maintenance/tasks.php">Mantenimiento</a>
         </nav>
     </header>
