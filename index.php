@@ -1,5 +1,56 @@
+
 <?php
+session_start();
 require_once __DIR__ . '/src/config/database.php';
+
+// Permitir acceso solo si es admin o marco
+if (!isset($_SESSION['usuario']) || !in_array($_SESSION['usuario'], ['admin', 'marco'])) {
+    header('Location: login.php');
+    exit;
+}
+
+// Manejo de idioma con cookies
+if (isset($_GET['lang'])) {
+    $lang = $_GET['lang'];
+    setcookie('language', $lang, time() + (86400 * 30), "/"); // Cookie válida por 30 días
+    $_COOKIE['language'] = $lang;
+}
+
+$lang = $_COOKIE['language'] ?? 'es'; // Por defecto español
+
+// Traducciones
+$translations = [
+    'es' => [
+        'title' => 'El Gran Descanso - Gestión Hotelera',
+        'header' => '🌿 El Gran Descanso',
+        'rooms' => 'Habitaciones',
+        'guests' => 'Huéspedes',
+        'reservations' => 'Reservas',
+        'maintenance' => 'Mantenimiento',
+        'logout' => 'Cerrar sesión',
+        'statistics' => 'Estadísticas',
+        'tasks_in_progress' => 'Tareas en curso',
+        'total_reservations' => 'Total de reservas',
+        'total_guests' => 'Total de huéspedes',
+        'footer' => '🌱 El Gran Descanso - Conectando con la naturaleza'
+    ],
+    'en' => [
+        'title' => 'El Gran Descanso - Hotel Management',
+        'header' => '🌿 El Gran Descanso',
+        'rooms' => 'Rooms',
+        'guests' => 'Guests',
+        'reservations' => 'Reservations',
+        'maintenance' => 'Maintenance',
+        'logout' => 'Logout',
+        'statistics' => 'Statistics',
+        'tasks_in_progress' => 'Tasks in progress',
+        'total_reservations' => 'Total reservations',
+        'total_guests' => 'Total guests',
+        'footer' => '🌱 El Gran Descanso - Connecting with nature'
+    ]
+];
+
+$t = $translations[$lang];
 
 try {
     $db = Database::getInstance(); 
@@ -24,89 +75,69 @@ try {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>El Gran Descanso - Gestión Hotelera</title>
+    <title><?= $t['title'] ?></title>
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body class="layout">
     <header class="header">
-        <h1>🌿 El Gran Descanso</h1>
+        <h1><?= $t['header'] ?></h1>
         <nav class="navbar">
-            <a href="src/views/rooms/list.php">Habitaciones</a>
-            <a href="src/views/guests/guestsList.php">Huéspedes</a>
-            <a href="src/views/reservations/reservationsList.php">Reservas</a>
-            <a href="src/views/maintenance/tasks.php">Mantenimiento</a>
+            <a href="src/views/rooms/list.php"><?= $t['rooms'] ?></a>
+            <a href="src/views/guests/guestsList.php"><?= $t['guests'] ?></a>
+            <a href="src/views/reservations/reservationsList.php"><?= $t['reservations'] ?></a>
+            <a href="src/views/maintenance/tasks.php"><?= $t['maintenance'] ?></a>
+            <div class="dropdown">
+                <button class="btn" id="langBtn">
+                    <?php if ($lang === 'es'): ?>
+                        <span style="color:#d32f2f;font-weight:bold;">ES</span>
+                    <?php else: ?>
+                        <span style="color:#1565c0;font-weight:bold;">GB</span>
+                    <?php endif; ?>
+                </button>
+                <div class="dropdown-content" id="langMenu">
+                    <a href="?lang=es" class="lang-es">ES</a>
+                    <a href="?lang=en" class="lang-gb">GB</a>
+                </div>
+            </div>
+            <a href="logout.php" class="btn btn-danger" style="float:right; margin-left:10px;"><?= $t['logout'] ?></a>
+            <script>
+                const langBtn = document.getElementById('langBtn');
+                const langMenu = document.getElementById('langMenu');
+                langBtn.onclick = function(e) {
+                    e.preventDefault();
+                    langMenu.style.display = (langMenu.style.display === 'block') ? 'none' : 'block';
+                };
+                document.addEventListener('click', function(e) {
+                    if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+                        langMenu.style.display = 'none';
+                    }
+                });
+            </script>
         </nav>
     </header>
     <main class="main">
         <section class="stats">
-            <h2>Estadísticas</h2>
+            <h2><?= $t['statistics'] ?></h2>
             <div class="card-container">
                 <div class="card">
-                    <h3>Tareas en curso</h3>
+                    <h3><?= $t['tasks_in_progress'] ?></h3>
                     <p><?= $tareasEnCurso ?></p>
                 </div>
                 <div class="card">
-                    <h3>Total de reservas</h3>
+                    <h3><?= $t['total_reservations'] ?></h3>
                     <p><?= $totalReservas ?></p>
                 </div>
                 <div class="card">
-                    <h3>Total de huéspedes</h3>
+                    <h3><?= $t['total_guests'] ?></h3>
                     <p><?= $totalHuespedes ?></p>
                 </div>
             </div>
         </section>
     </main>
     <footer class="footer">
-        <p>🌱 El Gran Descanso - Conectando con la naturaleza</p>
+        <p><?= $t['footer'] ?></p>
     </footer>
 </body>
 </html>
 
-<?php
-if (!class_exists('Database')) {
-    class Database {
-        private static ?PDO $instance = null;
 
-        public static function getInstance(): PDO {
-            if (self::$instance === null) {
-                $cfg = require __DIR__ . '/database.php';
-
-                // Validar que $cfg sea un array y contenga las claves necesarias
-                if (!is_array($cfg) || !isset($cfg['driver'], $cfg['host'], $cfg['database'], $cfg['username'], $cfg['password'], $cfg['charset'])) {
-                    throw new RuntimeException('La configuración de la base de datos es inválida.');
-                }
-
-                $dsn = "{$cfg['driver']}:host={$cfg['host']};dbname={$cfg['database']};charset={$cfg['charset']}";
-                try {
-                    self::$instance = new PDO($dsn, $cfg['username'], $cfg['password'], [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    ]);
-                } catch (PDOException $e) {
-                    throw new RuntimeException('Error al conectar con la base de datos: ' . $e->getMessage());
-                }
-            }
-            return self::$instance;
-        }
-
-        private function __construct() {}
-    }
-}
-
-
-return [
-    'driver' => 'mysql',
-    'host' => 'localhost',
-    'database' => 'hotel_db',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8',
-];
-?>
-
-<style>
-body {
-    background: url('./img/Principal.jpg') no-repeat center center fixed; /* Imagen de fondo */
-    background-size: cover;
-}
-</style>

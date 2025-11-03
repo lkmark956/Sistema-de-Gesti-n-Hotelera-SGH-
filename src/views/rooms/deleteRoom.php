@@ -1,3 +1,8 @@
+<header class="header">
+    <nav class="navbar">
+        <a href="../../../logout.php" class="btn btn-danger" style="float:right;">Cerrar sesión</a>
+    </nav>
+</header>
 <?php
 require_once __DIR__ . '/../../config/database.php';
 

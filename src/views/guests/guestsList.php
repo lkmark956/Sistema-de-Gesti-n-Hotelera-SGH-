@@ -1,34 +1,38 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../config/language.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Huéspedes - El Gran Descanso</title>
+    <title><?= $t['guests'] ?> - <?= $t['title'] ?></title>
     <link rel="stylesheet" href="../../style.css">
 </head>
 <body class="layout guests-page">
     <header class="header">
-        <h1>👥 Huéspedes</h1>
+        <h1>👥 <?= $t['guests'] ?></h1>
         <nav class="navbar">
-            <a href="../../../index.php">Inicio</a>
-            <a href="../rooms/list.php">Habitaciones</a>
-            <a href="../reservations/reservationsList.php">Reservas</a>
-            <a href="../maintenance/tasks.php">Mantenimiento</a>
+            <a href="../../../index.php"><?= $t['home'] ?></a>
+            <a href="../rooms/list.php"><?= $t['rooms'] ?></a>
+            <a href="../reservations/reservationsList.php"><?= $t['reservations'] ?></a>
+            <a href="../maintenance/tasks.php"><?= $t['maintenance'] ?></a>
+            <a href="?lang=es" title="Español">🇪🇸</a>
+            <a href="?lang=en" title="English">🇬🇧</a>
+                <a href="../../../logout.php" class="btn btn-danger" style="float:right;"><?= $t['logout'] ?></a>
         </nav>
     </header>
     <main class="main">
         <section class="guests">
-            <h2>Lista de Huéspedes</h2>
+            <h2><?= $t['guests_list'] ?></h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Acciones</th>
+                        <th><?= $t['id'] ?></th>
+                        <th><?= $t['name'] ?></th>
+                        <th><?= $t['lastname'] ?></th>
+                        <th><?= $t['email'] ?></th>
+                        <th><?= $t['actions'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,14 +48,16 @@ require_once __DIR__ . '/../../config/database.php';
                                 <td><?= htmlspecialchars($huesped['apellido']) ?></td>
                                 <td><?= htmlspecialchars($huesped['email']) ?></td>
                                 <td>
-                                    <form method="POST" action="deleteGuest.php" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?= htmlspecialchars($huesped['id']) ?>">
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                    <form method="GET" action="editGuest.php" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?= htmlspecialchars($huesped['id']) ?>">
-                                        <button type="submit" class="btn btn-primary">Editar</button>
-                                    </form>
+                                    <?php if (session_status() !== PHP_SESSION_ACTIVE) { session_start(); } if (isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin'): ?>
+                                        <form method="POST" action="deleteGuest.php" style="display:inline;">
+                                            <input type="hidden" name="id" value="<?= htmlspecialchars($huesped['id']) ?>">
+                                            <button type="submit" class="btn btn-danger"><?= $t['delete'] ?></button>
+                                        </form>
+                                        <form method="GET" action="editGuest.php" style="display:inline;">
+                                            <input type="hidden" name="id" value="<?= htmlspecialchars($huesped['id']) ?>">
+                                            <button type="submit" class="btn btn-primary"><?= $t['edit'] ?></button>
+                                        </form>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach;
@@ -62,14 +68,16 @@ require_once __DIR__ . '/../../config/database.php';
                 </tbody>
             </table>
         </section>
+        <?php if (session_status() !== PHP_SESSION_ACTIVE) { session_start(); } if (isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin'): ?>
         <div class="create-guest">
             <form method="GET" action="addGuest.php">
-                <button type="submit" class="btn btn-primary">Crear Nuevo Huésped</button>
+                <button type="submit" class="btn btn-primary"><?= $t['create_guest'] ?></button>
             </form>
         </div>
+        <?php endif; ?>
     </main>
     <footer class="footer">
-        <p>🌱 El Gran Descanso - Conectando con la naturaleza</p>
+        <p><?= $t['footer'] ?></p>
     </footer>
 </body>
 </html>
