@@ -53,8 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Crear Nueva Reserva</title>
     <link rel="stylesheet" href="../../style.css">
+    <script src="../../theme.js"></script>
 </head>
 <body class="layout reservations-page">
+    <button id="theme-toggle" title="Cambiar tema">🌙</button>
     <header class="header">
         <h1>📅 Crear Nueva Reserva</h1>
     </header>

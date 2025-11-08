@@ -15,8 +15,10 @@ try {
     <meta charset="UTF-8">
     <title><?= $t['maintenance_tasks'] ?></title>
     <link rel="stylesheet" href="../../style.css">
+    <script src="../../theme.js"></script>
 </head>
 <body class="layout rooms-page">
+    <button id="theme-toggle" title="Cambiar tema">🌙</button>
     <header class="header">
         <h1>🔧 <?= $t['maintenance_tasks'] ?></h1>
         <nav class="navbar">
@@ -26,7 +28,7 @@ try {
             <a href="../reservations/reservationsList.php"><?= $t['reservations'] ?></a>
             <a href="?lang=es" title="Español">🇪🇸</a>
             <a href="?lang=en" title="English">🇬🇧</a>
-            <a href="../../../logout.php" class="btn btn-danger" style="float:right;"><?= $t['logout'] ?></a>
+            <a href="../../../logout.php" class="btn btn-danger"><?= $t['logout'] ?></a>
         </nav>
     </header>
     <main class="main">

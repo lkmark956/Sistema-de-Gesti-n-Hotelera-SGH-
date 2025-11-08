@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try {
         $db = Database::getInstance();
-        $stmt = $db->prepare('SELECT * FROM Cuentas WHERE nombre = ? AND contraseña = ?');
+        $stmt = $db->prepare('SELECT * FROM cuentas WHERE nombre = ? AND contraseña = ?');
         $stmt->execute([$username, $password]);
         $user = $stmt->fetch();
         if ($user) {
@@ -31,8 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Login SGH</title>
     <link rel="stylesheet" href="src/style.css">
+    <script src="src/theme.js"></script>
 </head>
 <body>
+    <button id="theme-toggle" title="Cambiar tema">🌙</button>
     <div class="form-guest">
         <h2>Iniciar sesión</h2>
         <?php if ($error): ?>

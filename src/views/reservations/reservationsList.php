@@ -14,8 +14,10 @@ if ($reservations === null) {
     <meta charset="UTF-8">
     <title><?= $t['reservations'] ?> - <?= $t['title'] ?></title>
     <link rel="stylesheet" href="../../style.css">
+    <script src="../../theme.js"></script>
 </head>
 <body class="layout reservations-page">
+    <button id="theme-toggle" title="Cambiar tema">🌙</button>
     <header class="header">
         <h1>📅 <?= $t['reservations'] ?></h1>
         <nav class="navbar">
@@ -25,7 +27,7 @@ if ($reservations === null) {
             <a href="../maintenance/tasks.php"><?= $t['maintenance'] ?></a>
             <a href="?lang=es" title="Español">🇪🇸</a>
             <a href="?lang=en" title="English">🇬🇧</a>
-            <a href="../../../logout.php" class="btn btn-danger" style="float:right;"><?= $t['logout'] ?></a>
+            <a href="../../../logout.php" class="btn btn-danger"><?= $t['logout'] ?></a>
         </nav>
     </header>
     <main class="main">

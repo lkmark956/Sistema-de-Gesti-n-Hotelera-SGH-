@@ -20,8 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     <meta charset="UTF-8">
     <title>Editar Huésped</title>
     <link rel="stylesheet" href="../../style.css">
+    <script src="../../theme.js"></script>
 </head>
 <body class="layout guests-page">
+    <button id="theme-toggle" title="Cambiar tema">🌙</button>
     <header class="header">
         <h1>👥 Editar Huésped</h1>
     </header>

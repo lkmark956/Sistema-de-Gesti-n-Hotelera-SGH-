@@ -40,8 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Crear Nueva Habitación</title>
     <link rel="stylesheet" href="../../style.css">
+    <script src="../../theme.js"></script>
 </head>
 <body class="layout rooms-page">
+    <button id="theme-toggle" title="Cambiar tema">🌙</button>
     <header class="header">
         <h1>🌿 Crear Nueva Habitación</h1>
     </header>

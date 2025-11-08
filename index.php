@@ -77,8 +77,10 @@ try {
     <meta charset="UTF-8">
     <title><?= $t['title'] ?></title>
     <link rel="stylesheet" href="src/style.css">
+    <script src="src/theme.js"></script>
 </head>
 <body class="layout">
+    <button id="theme-toggle" title="Cambiar tema">🌙</button>
     <header class="header">
         <h1><?= $t['header'] ?></h1>
         <nav class="navbar">
@@ -99,7 +101,7 @@ try {
                     <a href="?lang=en" class="lang-gb">GB</a>
                 </div>
             </div>
-            <a href="logout.php" class="btn btn-danger" style="float:right; margin-left:10px;"><?= $t['logout'] ?></a>
+            <a href="logout.php" class="btn btn-danger"><?= $t['logout'] ?></a>
             <script>
                 const langBtn = document.getElementById('langBtn');
                 const langMenu = document.getElementById('langMenu');

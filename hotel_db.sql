@@ -67,13 +67,13 @@ SELECT * FROM huespedes;
 ALTER TABLE huespedes
 ADD COLUMN apellido VARCHAR(150) NOT NULL;
 
-CREATE TABLE Cuentas (
+CREATE TABLE cuentas (
 	id_cuenta INT PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR (200) NOT NULL,
     contraseña VARCHAR (220)
 );
 
-INSERT INTO Cuentas (nombre, contraseña) VALUES
+INSERT INTO cuentas (nombre, contraseña) VALUES
 ('admin', '1234'),
 ('marco', '123'); 
 
